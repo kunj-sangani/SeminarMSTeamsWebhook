@@ -1,0 +1,90 @@
+Demo 1
+
+curl -H 'Content-Type: application/json' -d '{"text": "Hello World"}' https://outlook.office.com/webhook/21c0563f-dce0-4812-be50-99bb4070831b@52d05dd6-9e21-494f-8502-77658dbe16b8/IncomingWebhook/097b2d8316b3417cb318a7f7337abedc/24664b77-c1c8-4fc8-8a47-dfb149781236
+
+
+
+Demo 2
+
+PostMan
+
+Demo 3
+
+https://testinglala.sharepoint.com/SitePages/Webhook-Demo.aspx
+
+
+
+{
+    "@type": "MessageCard",
+    "@context": "http://schema.org/extensions",
+    "themeColor": "0076D7",
+    "summary": "Kunj Sangani created a new task",
+    "sections": [{
+        "activityTitle": "![TestImage](https://47a92947.ngrok.io/Content/Images/default.png)Kunj Sangani created a new task",
+        "activitySubtitle": "On Project Tango",
+        "activityImage": "https://teamsnodesample.azurewebsites.net/static/img/image5.png",
+        "facts": [{
+            "name": "Assigned to",
+            "value": "Unassigned"
+        }, {
+            "name": "Due date",
+            "value": "Mon May 01 2017 17:07:18 GMT-0700 (Pacific Daylight Time)"
+        }, {
+            "name": "Status",
+            "value": "Not started"
+        }],
+        "markdown": true
+    }],
+    "potentialAction": [{
+        "@type": "ActionCard",
+        "name": "Add a comment",
+        "inputs": [{
+            "@type": "TextInput",
+            "id": "comment",
+            "isMultiline": false,
+            "title": "Add a comment here for this task"
+        }],
+        "actions": [{
+            "@type": "HttpPOST",
+            "name": "Add comment",
+            "target": "http://..."
+        }]
+    }, {
+        "@type": "ActionCard",
+        "name": "Set due date",
+        "inputs": [{
+            "@type": "DateInput",
+            "id": "dueDate",
+            "title": "Enter a due date for this task"
+        }],
+        "actions": [{
+            "@type": "HttpPOST",
+            "name": "Save",
+            "target": "http://..."
+        }]
+    }, {
+        "@type": "ActionCard",
+        "name": "Change status",
+        "inputs": [{
+            "@type": "MultichoiceInput",
+            "id": "list",
+            "title": "Select a status",
+            "isMultiSelect": "false",
+            "choices": [{
+                "display": "In Progress",
+                "value": "1"
+            }, {
+                "display": "Active",
+                "value": "2"
+            }, {
+                "display": "Closed",
+                "value": "3"
+            }]
+        }],
+        "actions": [{
+            "@type": "HttpPOST",
+            "name": "Save",
+            "target": "http://..."
+        }]
+    }]
+}
