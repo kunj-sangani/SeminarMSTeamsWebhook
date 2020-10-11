@@ -1,15 +1,16 @@
 
 const crypto = require('crypto');
-const sharedSecret = ""; // e.g. "+ZaRRMC8+mpnfGaGsBOmkIFt98bttL5YQRq3p2tXgcE="
+const sharedSecret = "n3UJ+OF9ivCBVAOKPHNQT4Jswkq+duH7WOk8b8eDUjA="; // e.g. "+ZaRRMC8+mpnfGaGsBOmkIFt98bttL5YQRq3p2tXgcE="
 const bufSecret = Buffer(sharedSecret, "base64");
 
 var http = require('http');
 var PORT = process.env.port || process.env.PORT || 8080;
 
 http.createServer(function(request, response) { 
-	var payload = '';
+	var payload = '';	
 	// Process the request
 	request.on('data', function (data) {
+		console.log(data);
 		payload += data;
 	});
 	
@@ -19,6 +20,7 @@ http.createServer(function(request, response) {
 			// Retrieve authorization HMAC information
 			var auth = this.headers['authorization'];			
 			var msgBuf = Buffer.from(payload, 'utf8');
+			console.log(msgBuf);
 			var msgHash = "HMAC " + crypto.createHmac('sha256', bufSecret).update(msgBuf).digest("base64");
 			
 			response.writeHead(200);
